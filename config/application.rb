@@ -1,5 +1,7 @@
 require_relative "boot"
 
+require "gvl-tracing"
+GvlTracing.start("gvl_dump_#{Time.now.strftime('%H_%M_%S')}.json")
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -13,7 +15,7 @@ module LoadAsyncRails
 
     # Configuration for the application, engines, and railties goes here.
     #
-    # These settings can be overridden in specific environments using the files
+    # These settings can be overridden in spec duuific environments using the files
     # in config/environments, which are processed later.
     #
     # config.time_zone = "Central Time (US & Canada)"

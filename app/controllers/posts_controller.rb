@@ -3,7 +3,29 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.slow
+    @users = User.slow
+    @adverts = Advert.slow
+    @comments = Comment.slow
+    # threads = []
+    # 3.times do
+    #   threads << Thread.new do
+    #     ActiveRecord::Base.connection.execute("SELECT true FROM pg_sleep(1)").to_a
+    #   end
+    #   Thread
+    # end
+    # threads.each(&:join)
+    # rescue ActiveRecord::ConnectionTimeoutError => e
+    #   puts "listing #{Thread.list.count} threads:"
+    #   Thread.list.each_with_index do |t,i|
+    #     puts "---- thread #{i}: #{t.inspect}"
+    #     puts t.backtrace.take(5)
+    #   end
+    #   raise e
+
+    GvlTracing.stop
+
+    render :index
   end
 
   # GET /posts/1 or /posts/1.json
