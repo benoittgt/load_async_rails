@@ -1,7 +1,5 @@
 require_relative "boot"
 
-require "gvl-tracing"
-GvlTracing.start("gvl_dump_#{Time.now.strftime('%H_%M_%S')}.json")
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems

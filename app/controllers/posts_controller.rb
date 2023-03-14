@@ -3,26 +3,11 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.slow
-    @users = User.slow
-    @adverts = Advert.slow
-    @comments = Comment.slow
-    # threads = []
-    # 3.times do
-    #   threads << Thread.new do
-    #     ActiveRecord::Base.connection.execute("SELECT true FROM pg_sleep(1)").to_a
-    #   end
-    #   Thread
-    # end
-    # threads.each(&:join)
-    # rescue ActiveRecord::ConnectionTimeoutError => e
-    #   puts "listing #{Thread.list.count} threads:"
-    #   Thread.list.each_with_index do |t,i|
-    #     puts "---- thread #{i}: #{t.inspect}"
-    #     puts t.backtrace.take(5)
-    #   end
-    #   raise e
-
+    GvlTracing.start("gvl_dump_#{Time.now.strftime('%H_%M_%S')}.json")
+    @posts = Post.slow.load_async
+    @users = User.slow.load_async
+    @adverts = Advert.slow.load_async
+    @comments = Comment.slow.load_async
     GvlTracing.stop
 
     render :index
