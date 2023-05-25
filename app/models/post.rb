@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  scope :slow, lambda {
-    where('SELECT true FROM pg_sleep(2)').limit(10)
-  }
+  after_commit do
+    broadcast_replace_to "post_#{id}", partial: 'posts/foo', locals: { post: self }
+  end
 end

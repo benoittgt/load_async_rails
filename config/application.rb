@@ -11,6 +11,11 @@ module LoadAsyncRails
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.active_record.query_log_tags_enabled = true
+    config.active_record.query_log_tags = [ :application, :controller, :action, :job, :cable, :line ]
+
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in spec duuific environments using the files
