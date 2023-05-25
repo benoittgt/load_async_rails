@@ -71,4 +71,4 @@ group :test do
   gem "webdrivers"
 end
 
-gem "gvl-tracing", "~> 1.1"
+gem 'turbo-rails'

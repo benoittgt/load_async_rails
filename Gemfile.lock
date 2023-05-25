@@ -120,7 +120,6 @@ GEM
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    gvl-tracing (1.1.1)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -155,7 +154,11 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.2-aarch64-linux)
+      racc (~> 1.4)
     nokogiri (1.15.2-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     pg (1.5.3)
     public_suffix (5.0.1)
@@ -222,13 +225,14 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
   capybara
   debug
-  gvl-tracing (~> 1.1)
   importmap-rails
   jbuilder
   pg (~> 1.1)

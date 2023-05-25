@@ -3,12 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    GvlTracing.start("gvl_dump_#{Time.now.strftime('%H_%M_%S')}.json")
-    @posts = Post.slow.load_async
-    @users = User.slow.load_async
-    @adverts = Advert.slow.load_async
-    @comments = Comment.slow.load_async
-    GvlTracing.stop
+    @posts = Post.all
 
     render :index
   end

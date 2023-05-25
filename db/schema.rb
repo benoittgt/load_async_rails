@@ -26,15 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_073038) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", id: :serial, force: :cascade do |t|
-    t.bigint "project_id", null: false
-    t.text "kind", null: false
-    t.datetime "emitted_at", precision: nil, null: false
-    t.datetime "created_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", precision: nil, default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.index ["project_id", "kind", "emitted_at"], name: "index_events_on_project_id_kind_emitted_at"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
